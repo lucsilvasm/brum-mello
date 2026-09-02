@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--ARTIFACT:START-->
+<title>Momentos Brum &amp; Mello</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap">
+<style>
+/* ============================================================
+   SISTEMA VISUAL BRUM & MELLO
+   Extrair para site/css/tokens.css quando a 2a secao existir.
+   ============================================================ */
+:root{
+  color-scheme: dark;
+
+  /* Ground - grafite profundo com vies levemente oliva */
+  --ground:        #0C1014;
+  --ground-slot:   #141A18;
+
+  /* Verde oliva da marca */
+  --olive:         #37442A;
+  --olive-2:       #506635;
+  --olive-text:    #9BAE83;
+
+  /* Neutros */
+  --white:         #FFFFFF;
+  --off-white:     #E9E7DF;
+  --body:          #C2C6BB;
+  --muted:         #7C8374;
+  --muted-deep:    #5E6657;
+
+  /* Tipografia */
+  --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans:  "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+
+  /* Ritmo */
+  --gap:   clamp(14px, 1.9vw, 30px);
+  --pad-x: clamp(20px, 6vw, 88px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: var(--ground);
+  color: var(--body);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(a, button, [tabindex]):focus-visible{
+  outline: 1px solid var(--olive-text);
+  outline-offset: 4px;
+}
+
+/* ---------- Secao ---------- */
+.momentos{
+  position: relative;
+  padding: clamp(72px, 11vw, 168px) var(--pad-x) clamp(80px, 12vw, 180px);
+  overflow: hidden;
+}
+
+/* Glow oliva - iluminacao ambiente, quase subliminar */
+.momentos::before{
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: min(1180px, 118%);
+  height: 62%;
+  transform: translateX(-50%);
+  background: radial-gradient(58% 52% at 50% 50%, rgba(80,102,53,.20), rgba(80,102,53,0) 72%);
+  filter: blur(58px);
+  pointer-events: none;
+}
+
+.momentos > *{ position: relative; }
+
+.wrap{ max-width: 1340px; margin: 0 auto; }
+
+/* ---------- Cabecalho editorial ---------- */
+.head{
+  position: relative;
+  max-width: 44rem;
+  margin-bottom: clamp(48px, 7vw, 104px);
+}
+
+.eyebrow{
+  margin: 0 0 clamp(20px, 3vw, 34px);
+  font-size: .7rem;
+  font-weight: 400;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--olive-text);
+}
+
+.title{
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 5.6vw, 4.35rem);
+  line-height: 1.02;
+  letter-spacing: -.012em;
+  color: var(--off-white);
+  text-wrap: balance;
+}
+.title em{
+  font-style: italic;
+  font-weight: 400;
+  color: var(--white);
+}
+
+.lede{
+  max-width: 34rem;
+  margin: clamp(22px, 3vw, 34px) 0 0;
+  font-size: clamp(.92rem, 1.05vw, 1.02rem);
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* Monograma em marca d agua - aplicacao canonica */
+.watermark{
+  position: absolute;
+  top: 50%;
+  right: clamp(-170px, -7vw, -40px);
+  width: clamp(260px, 30vw, 460px);
+  aspect-ratio: 1;
+  transform: translateY(-52%);
+  border-radius: 50%;
+  opacity: .085;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- Grid editorial assimetrico ---------- */
+.galeria{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+
+.slot{
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.frame{
+  position: relative;
+  overflow: hidden;
+  background: var(--ground-slot);
+  box-shadow: inset 0 0 0 1px rgba(155, 174, 131, .09);
+  transition: box-shadow .6s cubic-bezier(.22,.61,.36,1);
+}
+
+/* Proporcoes e escada vertical - a assimetria mora aqui */
+.s1 { grid-column: 1 / span 5; }
+.s1 .frame { aspect-ratio: 4 / 5; }
+
+.s2 { grid-column: 6 / span 7; margin-top: clamp(30px, 5.5vw, 86px); }
+.s2 .frame { aspect-ratio: 16 / 10; }
+
+.s3 { grid-column: 1 / span 4; }
+.s3 .frame { aspect-ratio: 1 / 1; }
+
+.s4 { grid-column: 5 / span 4; margin-top: clamp(18px, 3vw, 46px); }
+.s4 .frame { aspect-ratio: 3 / 4; }
+
+.s5 { grid-column: 9 / span 4; margin-top: clamp(40px, 7vw, 108px); }
+.s5 .frame { aspect-ratio: 4 / 5; }
+
+.s6 { grid-column: 1 / span 12; margin-top: clamp(10px, 2vw, 34px); }
+.s6 .frame { aspect-ratio: 21 / 9; }
+
+/* ---------- Placeholder de fotografia ----------
+   Vira <img> quando as fotos reais chegarem.
+   O texto e o briefing do que fotografar.
+   ------------------------------------------------ */
+.ph{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 1.6vw, 22px);
+  background:
+    radial-gradient(120% 90% at 50% 6%, rgba(80,102,53,.14), rgba(80,102,53,0) 62%),
+    linear-gradient(168deg, #171E1A 0%, rgba(16,21,20,0) 58%, #0B0F0D 100%);
+  transition: transform 1.05s cubic-bezier(.22,.61,.36,1), filter .7s ease;
+  will-change: transform;
+}
+
+.disc{
+  display: grid;
+  place-items: center;
+  width: clamp(50px, 5.2vw, 68px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--olive);
+  box-shadow: 0 0 0 1px rgba(233,231,223,.16);
+}
+.disc svg{
+  width: 46%;
+  height: 46%;
+  fill: none;
+  stroke: var(--off-white);
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ph-cat{
+  font-size: .64rem;
+  font-weight: 400;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--olive-text);
+}
+
+.ph-note{
+  max-width: 78%;
+  font-size: .68rem;
+  line-height: 1.7;
+  letter-spacing: .02em;
+  text-align: center;
+  color: var(--muted);
+  opacity: .78;
+}
+.ph-note b{
+  display: block;
+  margin-bottom: .4em;
+  font-weight: 400;
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted-deep);
+}
+
+.s3 .ph-note, .s5 .ph-note { max-width: 86%; }
+
+/* ---------- Legenda no hover ---------- */
+.cap{
+  position: absolute;
+  left: clamp(14px, 1.6vw, 24px);
+  bottom: clamp(12px, 1.4vw, 20px);
+  display: flex;
+  align-items: baseline;
+  gap: .55em;
+  font-size: .66rem;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--off-white);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.22,.61,.36,1);
+  pointer-events: none;
+}
+.cap i{ font-style: normal; color: var(--olive-text); }
+
+.slot:hover .frame,
+.slot:focus-visible .frame{
+  box-shadow: inset 0 0 0 1px rgba(155, 174, 131, .26);
+}
+.slot:hover .ph,
+.slot:focus-visible .ph{
+  transform: scale(1.028);
+  filter: brightness(1.1);
+}
+.slot:hover .cap,
+.slot:focus-visible .cap{
+  opacity: 1;
+  transform: translateY(0);
+}
+.slot:active .ph{ transform: scale(1.012); }
+
+/* ---------- Reveal (so por JS, fora da primeira dobra) ---------- */
+.slot.pre{ opacity: 0; transform: translateY(22px); }
+.slot.in{
+  opacity: 1;
+  transform: none;
+  transition: opacity 1.15s cubic-bezier(.22,.61,.36,1), transform 1.15s cubic-bezier(.22,.61,.36,1);
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1000px){
+  .galeria{ grid-template-columns: repeat(6, 1fr); }
+  .s1 { grid-column: 1 / span 3; }
+  .s2 { grid-column: 4 / span 3; margin-top: clamp(24px, 5vw, 56px); }
+  .s2 .frame { aspect-ratio: 3 / 4; }
+  .s3 { grid-column: 1 / span 6; margin-top: clamp(8px, 2vw, 22px); }
+  .s3 .frame { aspect-ratio: 16 / 9; }
+  .s4 { grid-column: 1 / span 3; margin-top: 0; }
+  .s5 { grid-column: 4 / span 3; margin-top: clamp(24px, 5vw, 56px); }
+  .s6 { grid-column: 1 / span 6; }
+  .s6 .frame { aspect-ratio: 16 / 9; }
+  .watermark{ right: -14vw; opacity: .06; }
+}
+
+/* ---------- Mobile - reorganiza, nao comprime ---------- */
+@media (max-width: 640px){
+  .galeria{ grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .s1, .s2, .s5, .s6 { grid-column: 1 / span 2; margin-top: 0; }
+  .s1 .frame { aspect-ratio: 4 / 5; }
+  .s2 .frame { aspect-ratio: 16 / 10; }
+  .s3 { grid-column: 1 / span 1; margin-top: 0; }
+  .s4 { grid-column: 2 / span 1; margin-top: 26px; }
+  .s3 .frame, .s4 .frame { aspect-ratio: 3 / 4; }
+  .s5 { margin-top: 14px; }
+  .s5 .frame { aspect-ratio: 3 / 4; }
+  .s6 { margin-top: 14px; }
+  .s6 .frame { aspect-ratio: 4 / 3; }
+  .ph-note{ display: none; }
+  .s1 .ph-note, .s5 .ph-note{ display: block; }
+  .watermark{ display: none; }
+  .cap{ opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .slot.pre{ opacity: 1; transform: none; }
+  .ph, .cap, .frame{ transition: none; }
+  .slot:hover .ph, .slot:focus-visible .ph{ transform: none; }
+}
+</style>
+</head>
+<body>
+
+<section class="momentos" aria-labelledby="momentos-titulo">
+  <div class="wrap">
+
+    <header class="head">
+      <img class="watermark" src="../identidade/logo-monograma-oliva.jpg" alt="" aria-hidden="true">
+      <p class="eyebrow">Galeria</p>
+      <h2 class="title" id="momentos-titulo">Momentos que <em>permanecem</em>.</h2>
+      <p class="lede">Desde 2013, reunindo voc&ecirc; e sua fam&iacute;lia &agrave; mesa em Itabora&iacute;.</p>
+    </header>
+
+    <div class="galeria">
+
+      <button type="button" class="slot s1">
+        <div class="frame">
+          <div class="ph">
+            <span class="disc" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 21V10.2a1 1 0 0 1 .42-.82l7-5.04a1 1 0 0 1 1.16 0l7 5.04a1 1 0 0 1 .42.82V21"/><path d="M2.5 21h19"/><path d="M9.5 21v-6a2.5 2.5 0 0 1 5 0v6"/></svg>
+            </span>
+            <span class="ph-cat">Ambiente</span>
+            <span class="ph-note"><b>Foto pendente &middot; 4:5</b>Fachada ou sal&atilde;o em luz baixa. Vertical, profundidade de campo, sombra profunda.</span>
+          </div>
+          <span class="cap"><i>+</i> Ambiente</span>
+        </div>
+      </button>
+
+      <button type="button" class="slot s2">
+        <div class="frame">
+          <div class="ph">
+            <span class="disc" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="8.2" r="3.1"/><path d="M2.8 19.4c0-3.2 2.8-5.2 6.2-5.2s6.2 2 6.2 5.2"/><path d="M16.2 5.6a3 3 0 0 1 0 5.6"/><path d="M18 14.6c2.1.6 3.4 2.2 3.4 4.8"/></svg>
+            </span>
+            <span class="ph-cat">Experi&ecirc;ncia</span>
+            <span class="ph-note"><b>Foto pendente &middot; 16:10</b>Sal&atilde;o em servi&ccedil;o, mesa cheia, passador em movimento. Horizontal ampla, corte cinematogr&aacute;fico.</span>
+          </div>
+          <span class="cap"><i>+</i> Experi&ecirc;ncia</span>
+        </div>
+      </button>
+
+      <button type="button" class="slot s3">
+        <div class="frame">
+          <div class="ph">
+            <span class="disc" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6.5 3v6.4a2.2 2.2 0 0 0 4.4 0V3"/><path d="M8.7 9.6V21"/><path d="M17 21V3.6c-1.9.7-2.9 2.6-2.9 5.3 0 1.9.9 3 2.9 3.3"/></svg>
+            </span>
+            <span class="ph-cat">Detalhes</span>
+            <span class="ph-note"><b>Foto pendente &middot; 1:1</b>Close de talher, ta&ccedil;a ou textura de mesa.</span>
+          </div>
+          <span class="cap"><i>+</i> Detalhes</span>
+        </div>
+      </button>
+
+      <button type="button" class="slot s4">
+        <div class="frame">
+          <div class="ph">
+            <span class="disc" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 16.4h18"/><path d="M4.6 16.4a7.4 7.4 0 0 1 14.8 0"/><path d="M12 6.2V4.4"/><path d="M2.4 19.8h19.2"/></svg>
+            </span>
+            <span class="ph-cat">Gastronomia</span>
+            <span class="ph-note"><b>Foto pendente &middot; 3:4</b>Corte de carne ou pizza rec&eacute;m-sa&iacute;da. Vertical, tom quente, highlight suave.</span>
+          </div>
+          <span class="cap"><i>+</i> Gastronomia</span>
+        </div>
+      </button>
+
+      <button type="button" class="slot s5">
+        <div class="frame">
+          <div class="ph">
+            <span class="disc" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4.2 4h6l-1.4 5.2a1.9 1.9 0 0 1-3.7 0Z"/><path d="M7.2 11.6V20"/><path d="M5 20h4.4"/><path d="M14 4h6l-1.4 5.2a1.9 1.9 0 0 1-3.7 0Z"/><path d="M17 11.6V20"/><path d="M14.8 20h4.4"/></svg>
+            </span>
+            <span class="ph-cat">Celebra&ccedil;&atilde;o</span>
+            <span class="ph-note"><b>Foto pendente &middot; 4:5</b>Brinde, anivers&aacute;rio, mesa reunida. Gesto real, sem pose.</span>
+          </div>
+          <span class="cap"><i>+</i> Celebra&ccedil;&atilde;o</span>
+        </div>
+      </button>
+
+      <button type="button" class="slot s6">
+        <div class="frame">
+          <div class="ph">
+            <span class="disc" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7.4 3.2h9.2l-.7 5.6a3.9 3.9 0 0 1-7.8 0Z"/><path d="M12 12.7V20"/><path d="M8.6 20h6.8"/></svg>
+            </span>
+            <span class="ph-cat">Bebidas</span>
+            <span class="ph-note"><b>Foto pendente &middot; 21:9</b>Panor&acirc;mica de fecho &mdash; ta&ccedil;as servidas, garrafa, luz rasante sobre a mesa.</span>
+          </div>
+          <span class="cap"><i>+</i> Bebidas</span>
+        </div>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var slots = document.querySelectorAll('.slot');
+  var alvos = [];
+
+  // So esconde o que ja nasce fora da dobra - a pagina em repouso mostra tudo.
+  Array.prototype.forEach.call(slots, function (s) {
+    if (s.getBoundingClientRect().top > window.innerHeight * 0.92) {
+      s.classList.add('pre');
+      alvos.push(s);
+    }
+  });
+
+  if (!alvos.length) return;
+
+  function revelar() {
+    alvos.forEach(function (s) { s.classList.add('in'); });
+  }
+
+  if (!('IntersectionObserver' in window)) { revelar(); return; }
+
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e, i) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      obs.unobserve(el);
+      setTimeout(function () { el.classList.add('in'); }, i * 110);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+
+  alvos.forEach(function (s) { obs.observe(s); });
+
+  // Rede de seguranca: nada fica invisivel se o observer nao disparar.
+  setTimeout(revelar, 2600);
+})();
+</script>
+<!--ARTIFACT:END-->
+</body>
+</html>
